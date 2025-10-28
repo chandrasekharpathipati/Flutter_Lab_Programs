@@ -191,4 +191,61 @@ flutter clean           # clear build caches (helpful for weird errors)
 * For better layout, you included width/height — good. Keep `FittedBox` around the `Row` if you want scaling behavior on different screens.
 
 
+you have to type the program in main.dart file 
+
+import 'package:flutter/material.dart';
+void main() => runApp(const MyApp());
+class MyApp extends StatelessWidget {
+  // It is the root widget of your application.
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Multiple Layout Widget',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        // This is the theme of your application.
+        primarySwatch: Colors.green,
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("FittedBox Widget")),
+      body: Center(
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Row(
+            children: <Widget>[
+              Container(
+                // Replaced Image.asset with Image.network as per instructions
+                // and used the provided placeholder URL.
+                child: Image.asset(
+                  'assets/laughtrh.png',
+                  width: 100, // Added a width to the image for better layout control
+                  height: 100, // Added a height to the image for better layout control
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8.0), // Added padding for better aesthetics
+                child: const Text(
+                  "This is a widget",
+                  style: TextStyle(fontSize: 24), // Increased font size for visibility
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
 
