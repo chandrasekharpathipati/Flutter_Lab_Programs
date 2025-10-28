@@ -2,13 +2,6 @@
 ````markdown
 # 🧾 Flutter User Registration Form  
 
-[![Flutter](https://img.shields.io/badge/Framework-Flutter-blue?logo=flutter)](https://flutter.dev)
-[![Language](https://img.shields.io/badge/Language-Dart-blue?logo=dart)](https://dart.dev)
-[![Run Demo](https://img.shields.io/badge/🔗_Run%20Demo-Zapp.run-orange)](https://zapp.run/edit/flutter-zstw06b6stx0?entry=lib%2Fmain.dart)
-[![Blog](https://img.shields.io/badge/📘_Read%20My%20Blog-Dart%20Programming-blueviolet)](https://lunardiadem.blogspot.com/p/dart-programming-language.html)
-
----
-
 ## 🌟 Overview
 A **Flutter User Registration Form** demonstrating text fields, form validation, and button actions using Material Design widgets.  
 This app captures user details like **Name**, **Email**, and **Mobile Number** with validation rules and feedback.
