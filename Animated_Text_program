@@ -1,0 +1,185 @@
+````markdown
+# 💫 Flutter Animated Text Example (Week 12)
+
+This Flutter application demonstrates **Animated Text Effects**.  
+Since `animated_text_kit` is not supported in online compilers like Zapp.run, this version uses **static text placeholders** to represent where animations would normally appear.
+---
+## 🌐 Run Online
+
+👉 [Run this Project on Zapp Flutter Playground](https://zapp.run/edit/flutter-zg5u065mg5v0?lazy=false&split=50&entry=lib/main.dart&file=lib/main.dart)
+---
+
+## ⚙️ Run Offline (in Android Studio or VS Code)
+
+Follow the steps below to enable real **animated text functionality** on your local setup.
+
+---
+
+### 🧩 Step 1: Add Dependencies
+
+In your project’s `pubspec.yaml`, add:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  animated_text_kit: ^4.2.2
+````
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+---
+
+### 🧠 Step 2: Add Code to `lib/main.dart`
+
+If you are using Zapp online, keep this **static version**:
+
+```dart
+import 'package:flutter/material.dart';
+// The 'animated_text_kit' package is reported as unsupported.
+// To fix this, we will remove its usage and replace animated widgets with static Text widgets.
+// import 'package:animated_text_kit/animated_text_kit.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Animated Text Demo',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.teal),
+      home: const AnimatedTextExample(),
+    );
+  }
+}
+
+class AnimatedTextExample extends StatelessWidget {
+  const AnimatedTextExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Animated Text Example'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '💫 Flutter Animated Text Examples 💫',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 40),
+
+              // Typewriter Animation (Static Text Placeholder)
+              Text(
+                'Welcome to Flutter!',
+                style: const TextStyle(
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.teal,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 30),
+
+              // Fade Animation (Static Text Placeholder)
+              const Text(
+                'Build Beautiful UIs\nFast Development\nNative Performance',
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 30),
+
+              // Scale Animation (Static Text Placeholder)
+              Text(
+                'Let\'s Get Started!',
+                style: const TextStyle(
+                    fontSize: 30,
+                    color: Colors.orange,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+
+              const SizedBox(height: 30),
+
+              // Colorize Animation (Static Text Placeholder)
+              Text(
+                'Flutter Animation Magic ✨',
+                style: const TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.purple),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+If you are working **offline** (in Android Studio / VS Code), you can **uncomment** the `animated_text_kit` import and replace the text widgets with the animated versions (Typewriter, Fade, Scale, and Colorize).
+
+---
+
+### ▶️ Step 3: Run the App
+
+In terminal:
+
+```bash
+flutter run
+```
+
+Or click **Run ▶️** in Android Studio.
+
+---
+
+## ⚠️ Common Errors & Fixes
+
+| Error                         | Cause                | Fix                                             |
+| ----------------------------- | -------------------- | ----------------------------------------------- |
+| `animated_text_kit not found` | Dependency missing   | Run `flutter pub get`                           |
+| `No devices found`            | Emulator not running | Start Android Emulator or connect a real device |
+| `App not updating`            | Cached build         | Run `flutter clean` then `flutter run`          |
+
+---
+
+## 💡 Notes
+
+* The **Zapp version** uses **static text** for preview compatibility.
+* The **offline version** supports **real animations** once you add the package.
+* The app demonstrates:
+
+  * Typewriter Animation 🖋️
+  * Fade Animation 🌈
+  * Scale Animation 🔍
+  * Colorize Animation 🎨
+
+---
+
+## 📘 Learn More About Dart and Flutter
+
+👉 [Dart Programming Blog](https://lunardiadem.blogspot.com/p/dart-programming-language.html)
+
+---
+
+
