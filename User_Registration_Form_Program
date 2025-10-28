@@ -1,0 +1,254 @@
+
+````markdown
+# 🧾 Flutter User Registration Form  
+
+[![Flutter](https://img.shields.io/badge/Framework-Flutter-blue?logo=flutter)](https://flutter.dev)
+[![Language](https://img.shields.io/badge/Language-Dart-blue?logo=dart)](https://dart.dev)
+[![Run Demo](https://img.shields.io/badge/🔗_Run%20Demo-Zapp.run-orange)](https://zapp.run/edit/flutter-zstw06b6stx0?entry=lib%2Fmain.dart)
+[![Blog](https://img.shields.io/badge/📘_Read%20My%20Blog-Dart%20Programming-blueviolet)](https://lunardiadem.blogspot.com/p/dart-programming-language.html)
+
+---
+
+## 🌟 Overview
+A **Flutter User Registration Form** demonstrating text fields, form validation, and button actions using Material Design widgets.  
+This app captures user details like **Name**, **Email**, and **Mobile Number** with validation rules and feedback.
+
+---
+
+## 🚀 Live Demo  
+👉 [Run on Zapp Flutter Playground](https://zapp.run/edit/flutter-zstw06b6stx0?entry=lib%2Fmain.dart)
+
+---
+
+## 📘 Learn More About Dart Programming  
+If you’re learning Dart, explore my detailed tutorials:  
+👉 [Visit My Dart Programming Blog](https://lunardiadem.blogspot.com/p/dart-programming-language.html)
+
+---
+
+## 🧩 Features
+
+✅ Validates user input fields  
+✅ Uses `GlobalKey<FormState>` for form validation  
+✅ Snackbar confirmation after successful registration  
+✅ Fully responsive layout  
+✅ Clean and readable code  
+
+---
+
+## 🧠 Dart Code (`main.dart`)
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'User Registration',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const Register(),
+    );
+  }
+}
+
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _mobileController.dispose();
+    super.dispose();
+  }
+
+  String? _validateFirstName(String? value) {
+    if (value == null || value.isEmpty) return 'Please enter first name';
+    if (value.length < 3) return 'First name must be at least 3 characters long';
+    return null;
+  }
+
+  String? _validateLastName(String? value) {
+    if (value == null || value.isEmpty) return 'Please enter last name';
+    if (value.length < 3) return 'Last name must be at least 3 characters long';
+    return null;
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) return 'Please enter email address';
+    final RegExp emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    if (!emailRegex.hasMatch(value)) return 'Please enter a valid email address';
+    return null;
+  }
+
+  String? _validateMobile(String? value) {
+    if (value == null || value.isEmpty) return 'Please enter mobile number';
+    final RegExp mobileRegex = RegExp(r'^[0-9]{10}$');
+    if (!mobileRegex.hasMatch(value)) return 'Please enter a valid 10-digit mobile number';
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Register for Service')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formkey,
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              TextFormField(
+                controller: _firstNameController,
+                validator: _validateFirstName,
+                decoration: const InputDecoration(
+                  hintText: 'Enter first name',
+                  labelText: 'First Name',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(9.0)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _lastNameController,
+                validator: _validateLastName,
+                decoration: const InputDecoration(
+                  hintText: 'Enter last name',
+                  labelText: 'Last Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(9.0)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _emailController,
+                validator: _validateEmail,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(9.0)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: _mobileController,
+                validator: _validateMobile,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  hintText: 'Mobile',
+                  labelText: 'Mobile',
+                  prefixIcon: Icon(Icons.phone),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(9.0)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formkey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Registration Successful!')),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text('Register', style: TextStyle(fontSize: 22)),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+````
+
+---
+
+## ⚙️ Setup Guide
+
+### 🧭 Step 1: Install Flutter
+
+Follow the official guide → [Flutter Installation Guide](https://flutter.dev/docs/get-started/install)
+
+Verify setup:
+
+```bash
+flutter doctor
+```
+
+### 🧰 Step 2: Create New Flutter Project
+
+* **Android Studio:** `File → New → Flutter Project → Application`
+* **VS Code:** `Ctrl + Shift + P → Flutter: New Project`
+
+Replace the default `main.dart` with the code above.
+
+### 🖼️ Step 3: Run the App
+
+Connect an emulator or device, then run:
+
+```bash
+flutter run
+```
+
+---
+
+## ⚠️ Common Errors & Fixes
+
+| Error                   | Cause                         | Fix                                               |
+| ----------------------- | ----------------------------- | ------------------------------------------------- |
+| `RenderFlex overflowed` | Layout too small              | Use `SingleChildScrollView`                       |
+| `No devices found`      | Emulator/device not connected | Start a device or use `flutter devices`           |
+| `pubspec.yaml` error    | Indentation issue             | Use **2 spaces** and run `flutter pub get` again  |
+| `Invalid email`         | Regex mismatch                | Ensure a valid email format like `name@email.com` |
+
+---
+
+
+📚 [My Dart Programming Blog](https://lunardiadem.blogspot.com/p/dart-programming-language.html)
+
+---
+
+💡 *A clean, well-documented Flutter form project for beginners to learn user input validation and form handling.*
+
+```
+
+---
