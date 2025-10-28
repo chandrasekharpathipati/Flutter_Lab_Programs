@@ -1,2 +1,194 @@
 //Create an application for Layout widgets (Single child, Multiple Child). 
-https://zapp.run/edit/flutter-z520a06tj520b?entry=lib/main.dart&file=lib/main.dart:0-1712
+https://zapp.run/edit/flutter-z520a06tj520b?entry=lib/main.dart&file=lib/main.dart
+
+to know the basics of dart program go to this link Here’s the hyperlink for your blog page:
+[Read my Dart Programming Blog](https://lunardiadem.blogspot.com/p/dart-programming-language.html)
+
+
+
+Nice — here are **clear, step-by-step instructions** to run your Flutter app (the `FittedBox` example) **locally** in **Android Studio** or **Visual Studio Code**. I’ll cover SDK/IDE installation, project setup, assets setup (important for `Image.asset`), running on emulator or a physical device, and quick troubleshooting.
+
+# 1 — Prerequisites (one-time)
+
+1. Install **Flutter SDK**
+
+   * Download and follow platform-specific steps: [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
+   * Unzip to a folder (example: `C:\src\flutter` on Windows or `~/development/flutter` on macOS/Linux).
+   * Add `flutter/bin` to your system PATH.
+
+2. Install **Android Studio** (for Android emulator + Gradle)
+
+   * During install enable **Android SDK**, **Android SDK Platform**, and **Android Virtual Device**.
+
+3. Optional: Install **Visual Studio Code** (lightweight editor)
+
+   * Install from [https://code.visualstudio.com/](https://code.visualstudio.com/)
+
+4. Verify installation:
+
+```bash
+flutter doctor
+```
+
+Resolve anything `flutter doctor` flags (SDK licenses, missing SDK components, Android Studio plugin prompts).
+
+---
+
+# 2 — Install Flutter plugins in IDE
+
+## Android Studio
+
+1. Open Android Studio → **File → Settings → Plugins** (macOS: Android Studio → Preferences → Plugins).
+2. Search & install **Flutter** plugin — this installs **Dart** automatically.
+3. Restart Android Studio.
+
+## VS Code
+
+1. Open VS Code → Extensions
+2. Install **Flutter** (which also installs Dart).
+
+---
+
+# 3 — Prepare your project files (use your code)
+
+You already have `lib/main.dart`. Put it inside a Flutter project. You can either create a new project and replace `lib/main.dart`, or import your code into an existing Flutter project.
+
+### Create new project (Android Studio)
+
+* **File → New → New Flutter Project → Flutter Application**
+* Point to your Flutter SDK, name the project, finish.
+* Replace the generated `lib/main.dart` with your code.
+
+### Create new project (VS Code)
+
+* `Ctrl+Shift+P` → `Flutter: New Project` → follow prompts → open created folder.
+* Replace `lib/main.dart` with your code.
+
+---
+
+# 4 — Add the image asset (for `Image.asset('assets/laughtrh.png')`)
+
+Your code uses `Image.asset('assets/laughtrh.png')` — you must add the file and declare it in `pubspec.yaml`.
+
+1. In your project root create a folder named `assets` and put `laughtrh.png` inside it:
+
+```
+<project_root>/assets/laughtrh.png
+```
+
+2. Open `pubspec.yaml` and add the assets entry (ensure indentation is exact):
+
+```yaml
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/laughtrh.png
+```
+
+3. Save `pubspec.yaml` and run:
+
+```bash
+flutter pub get
+```
+
+> Alternate: If you prefer not to bundle the image, you can replace `Image.asset(...)` with `Image.network('https://example.com/image.png')` and no asset registration is needed.
+
+---
+
+# 5 — Configure an Android emulator or connect a device
+
+## Emulator (Android Studio)
+
+1. Android Studio → **Tools → Device Manager**
+2. Create a new virtual device (e.g., Pixel 4) and download a system image (Android 11/12/13).
+3. Launch the emulator.
+
+## Physical Android device
+
+1. Enable **Developer options** and **USB debugging** on the phone.
+2. Connect via USB (allow USB debugging on device prompt).
+3. Verify with:
+
+```bash
+flutter devices
+```
+
+Your emulator/device should appear in the list.
+
+---
+
+# 6 — Run the app
+
+### From Android Studio
+
+* Select the device/emulator in the top device dropdown.
+* Click the **Run ▶️** button (or `Shift+F10`).
+* Watch the Run console — Gradle builds and installs the APK.
+
+### From VS Code
+
+* Select target device at bottom-right, open `lib/main.dart`, press `F5` or `Debug → Start Debugging`.
+* Or run in terminal:
+
+```bash
+flutter run
+```
+
+To run on a specific device: `flutter run -d <device_id>` (device id from `flutter devices`).
+
+---
+
+# 7 — Hot reload / Hot restart
+
+* While app running, press **r** in terminal for hot reload, **R** for full restart.
+* In IDE use the lightning bolt icon (hot reload).
+
+---
+
+# 8 — Common problems & fixes
+
+* **Image not showing / asset error**:
+
+  * Check `assets` path and `pubspec.yaml` indentation. Run `flutter pub get`.
+  * Use `flutter clean` then `flutter run` if stubborn.
+
+* **Gradle build fails**:
+
+  * Open `android` folder in Android Studio and accept SDK license prompts.
+  * Ensure correct `compileSdkVersion` and installed Android SDK Platform.
+
+* **“No devices”**:
+
+  * Start emulator or connect device with USB debugging enabled. Run `adb devices` to verify.
+
+* **Package not found (e.g., table_calendar)**:
+
+  * Add dependency in `pubspec.yaml` and run `flutter pub get`. Zapp/dartpad may not support external packages online; local Android Studio will.
+
+* **Hot reload not updating assets**:
+
+  * Hot reload may not pick up newly added assets — use **hot restart** or stop & run again.
+
+---
+
+# 9 — Quick command-line cheatsheet
+
+From project root:
+
+```bash
+flutter pub get         # fetch dependencies & assets
+flutter analyze         # static analysis
+flutter run             # run on connected device/emulator
+flutter build apk       # build release/debug APK
+flutter clean           # clear build caches (helpful for weird errors)
+```
+
+---
+
+# 10 — Final notes tailored to your code
+
+* You used `Image.asset('assets/laughtrh.png')` — ensure the exact file exists in `assets/`.
+* For better layout, you included width/height — good. Keep `FittedBox` around the `Row` if you want scaling behavior on different screens.
+
+
+
